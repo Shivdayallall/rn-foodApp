@@ -9,7 +9,9 @@ const CatergoriesScreen = ({ navigation }) => {
   // Helper function to help the component render the data to the screen
   function renderCategoryItem(itemData) {
     function pressHandler() {
-      navigation.navigate('Meals Details');
+      navigation.navigate('Meals Details', {
+        categoryID: itemData.item.id,
+      });
     }
     return (
       <CategoryGridTile
