@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Pressable, platform } from 'react-native';
 import React from 'react';
 
 const CategoryGridTile = ({ title, color, onPress }) => {
@@ -27,6 +27,8 @@ const styles = StyleSheet.create({
     margin: 16,
     height: 150,
     borderRadius: 8,
+    // overflow: platform.OS === 'android' ? 'hidden' : 'visible',
+
     elevation: 4, // Style for shadow on android
 
     // Shadow style for IOS
