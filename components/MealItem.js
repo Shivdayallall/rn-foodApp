@@ -1,9 +1,25 @@
 import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
 
-const MealItem = ({ title, imageURL, duration, complexity, affordability }) => {
+import { useNavigation } from '@react-navigation/native';
+
+const MealItem = ({
+  id,
+  title,
+  imageURL,
+  duration,
+  complexity,
+  affordability,
+}) => {
+  // The useNavigation hook can be used for navigations, on screens/ components that's not included in the screen stack for nav
+  const navigation = useNavigation();
+  function selectMealItemHandler() {
+    navigation.navigate('Meals Info', {
+      mealId: id,
+    });
+  }
   return (
     <View style={styles.container}>
-      <Pressable>
+      <Pressable onPress={selectMealItemHandler}>
         <View>
           <Image style={styles.image} source={{ uri: imageURL }} />
           <Text style={styles.title}>{title}</Text>
