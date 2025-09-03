@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CatergoriesScreen from './screens/CatergoriesScreen.js';
 import MealsOverviewScreen from './screens/MealsOverviewScreen.js';
 import MealDetailScreen from './screens/MealDetailScreen.js';
+import FavoriteContextProvider from './store/context/context-favorite.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,26 +15,31 @@ export default function App() {
   return (
     <>
       <StatusBar style='auto' />
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerStyle: { backgroundColor: '#351401' },
-            headerTintColor: 'white',
-            contentStyle: { backgroundColor: '#3f2f25' },
-          }}
-        >
-          <Stack.Screen
-            name='Meals Categories'
-            component={CatergoriesScreen}
-            options={{
-              title: 'All Categories',
+      <FavoriteContextProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: { backgroundColor: '#351401' },
+              headerTintColor: 'white',
+              contentStyle: { backgroundColor: '#3f2f25' },
             }}
-          />
-          <Stack.Screen name='Meals Details' component={MealsOverviewScreen} />
+          >
+            <Stack.Screen
+              name='Meals Categories'
+              component={CatergoriesScreen}
+              options={{
+                title: 'All Categories',
+              }}
+            />
+            <Stack.Screen
+              name='Meals Details'
+              component={MealsOverviewScreen}
+            />
 
-          <Stack.Screen name='Meals Info' component={MealDetailScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+            <Stack.Screen name='Meals Info' component={MealDetailScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </FavoriteContextProvider>
     </>
   );
 }
